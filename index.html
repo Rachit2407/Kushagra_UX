@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UX E-Commerce</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>UX Shop</h1>
+  <input type="text" id="search" placeholder="Search products...">
+  <select id="sort">
+    <option value="featured">Sort: Featured</option>
+    <option value="priceLow">Price: Low to High</option>
+    <option value="priceHigh">Price: High to Low</option>
+    <option value="name">Name: A to Z</option>
+  </select>
+  <button onclick="goToCart()">Cart (<span id="count">0</span>)</button>
+  <button onclick="goToWishlist()">Wishlist (<span id="wishlistCount">0</span>)</button>
+  <button id="themeToggle" type="button" onclick="toggleTheme()">Dark Mode</button>
+</header>
+
+<!-- HOME -->
+<section id="home">
+  <div class="filters">
+    <select id="filter">
+      <option value="all">All Products</option>
+      <option value="low">Below ₹1000</option>
+      <option value="mid">₹1000 - ₹3000</option>
+    </select>
+    <button type="button" onclick="clearFilters()">Reset</button>
+  </div>
+
+  <div id="products"></div>
+</section>
+
+<!-- PRODUCT PAGE -->
+<section id="productPage" class="hidden"></section>
+
+<!-- WISHLIST -->
+<section id="wishlistPage" class="hidden">
+  <h2>Your Wishlist</h2>
+  <div id="wishlistItems"></div>
+  <button type="button" onclick="goHome()">Continue Shopping</button>
+</section>
+
+<!-- CART -->
+<section id="cartPage" class="hidden">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <h3>Total: ₹<span id="total"></span></h3>
+  <button type="button" onclick="clearCart()">Clear Cart</button>
+  <button onclick="goToCheckout()">Checkout</button>
+</section>
+
+<!-- CHECKOUT -->
+<section id="checkoutPage" class="hidden">
+  <h2>Checkout</h2>
+  <div id="checkoutSummary" class="checkout-summary"></div>
+  <div class="coupon-row">
+    <input type="text" id="couponCode" placeholder="Enter coupon code">
+    <button type="button" onclick="applyCoupon()">Apply</button>
+  </div>
+  <p id="couponMessage" class="coupon-message"></p>
+  <form id="checkoutForm">
+    <div class="form-grid">
+      <label>
+        Full Name
+        <input type="text" name="fullName" placeholder="Your name" required>
+      </label>
+      <label>
+        Phone Number
+        <input type="tel" name="phone" placeholder="10-digit phone" required>
+      </label>
+      <label class="full-width">
+        Address
+        <textarea name="address" rows="3" placeholder="House number, street, area" required></textarea>
+      </label>
+      <label>
+        City
+        <input type="text" name="city" placeholder="City" required>
+      </label>
+      <label>
+        Pincode
+        <input type="text" name="pincode" placeholder="Pincode" required>
+      </label>
+      <label>
+        Payment Method
+        <select name="paymentMethod" required>
+          <option value="card">Card</option>
+          <option value="upi">UPI</option>
+          <option value="cod">Cash on Delivery</option>
+        </select>
+      </label>
+      <label>
+        Card Number
+        <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456">
+      </label>
+      <label>
+        Expiry Date
+        <input type="text" name="expiry" placeholder="MM/YY">
+      </label>
+      <label>
+        CVV
+        <input type="password" name="cvv" placeholder="123">
+      </label>
+    </div>
+    <button type="submit">Place Order</button>
+  </form>
+</section>
+
+<!-- SUCCESS -->
+<section id="successPage" class="hidden">
+  <h2>✅ Order Placed Successfully!</h2>
+  <button onclick="goHome()">Continue Shopping</button>
+</section>
+
+<!-- TOAST -->
+<div id="toast">Added to cart ✔</div>
+
+<script src="script.js"></script>
+</body>
+</html>
